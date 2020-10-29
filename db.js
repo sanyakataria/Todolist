@@ -1,6 +1,7 @@
 const sequelize = require('sequelize')
 
-const db = new sequelize('mytodos', 'mytodo', 'mytodo', {
+const db = new sequelize('mytodos', 'root', 'root', {
+// const db = new sequelize('mytodos', 'myusersanya', 'mypass', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {
@@ -43,7 +44,7 @@ const todolist = db.define('lists', {
 
 db.sync()
 .then(() => console.log('database has been synced'))
-.catch(() => console.log('error creating database'))
+.catch((error) => console.log('error creating database :' + error))
 
 module.exports = {
     db,

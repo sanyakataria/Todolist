@@ -11,7 +11,13 @@ app.use(express.urlencoded({extended: true}))
 
 
 app.use(session({
-    secret: "somesecretstring"  // secret is used to encode cookies
+    secret: "somesecretstring",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        maxAge:1000*60*60*60,
+    }
+  // secret is used to encode cookies
 }))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -20,4 +26,4 @@ app.use('/',express.static(path.join(__dirname,"public")))
 
 app.use('/', require('./routes/route'))
 
-app.listen(9999, () => console.log("server started at http://localhost:9999"))
+app.listen(3000, () => console.log("server started at http://localhost:3000/login"))
